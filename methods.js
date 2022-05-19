@@ -203,21 +203,32 @@ const users = [
 
 // функция принимает массив и выводит в консоль все имена пользователей
 function getAllNames(array) {
-
+    array.forEach((item) => {
+    console.log(item.name)
+  });
 }
 
 getAllNames(users);
 
 // функция принимает массив и id пользователя, и выводит в консоль всю информацию (весь объект) об этом пользователе
 function getUserById(array, id) {
-
+    let getUs = array.forEach((item) => {
+    if (item.id === id) {
+      console.log(item)
+    }
+  })
+  return getUs
 }
 
 getUserById(users, 2); // должен вывести в консоль объект юзера с id === 2
 
 // функция принимает массив и возвращает новый массив в котором у всех пользователей пропадет поле address
 function removeAddresses(array) {
-
+  let rem = array.map((item) => {
+    delete item.address
+    console.log(item)
+  })
+  return rem
 }
 
 console.log(removeAddresses(users));
@@ -225,25 +236,50 @@ console.log(removeAddresses(users));
 
 // функция принимает массив и id пользователя, который должен быть удален и возвращает новый массив, уже без этого пользователя.
 function deleteUser(array, id) {
-
+  let del = array.filter((item) => {
+    if (item.id !== id) {
+      return true
+    }
+  })
+  return del
 }
 
 console.log(deleteUser(users, 1)); // массив без юзера с id === 1
 
 // функция принимает массив и id пользователя и выводит в консоль его ключ geo
 function getUsersGeo(array, id) {
-
+  array.forEach((item) => {
+    if (item.id === id) {
+      console.log(item.address.geo)
+    }
+  })
 }
 
+console.log(getUsersGeo(users, 3));
 
 // функция принимает массив и id пользователя, и выводит в консоль всю информацию (весь объект) о компании этого пользователя
 function getUsersCompany(array, id) {
-
+  array.forEach((item) => {
+    if (item.id === id) {
+      console.log(item.company)
+    }
+  })
 }
+
+console.log(getUsersCompany(users, 9))
 
 // функция принимает массив, id пользователя и новый номер телефона.
 // Функция возвращает новый массив с измененным номером для указанного пользователя. 
 
 function changePhone(array, id, phone) {
-  
+  let ch = array.map((item) => {
+    if (item.id === id) {
+      item.phone = phone
+      return item
+    }
+    return item
+  })
+  return ch
 }
+
+console.log(changePhone(users, 10, '555-555-555'))
